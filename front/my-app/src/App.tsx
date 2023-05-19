@@ -5,7 +5,7 @@ import './App.css';
 import Login from './features/counter/Login';
 import Register from './features/counter/Register';
 import CRUD from './features/counter/CRUD';
-import {selectLogged} from './features/counter/loginSlice'
+import { selectLogged } from './features/counter/loginSlice'
 import { useAppSelector, useAppDispatch } from './app/hooks';
 import MyNavbar from './MyNavbar';
 import { Outlet } from 'react-router-dom';
@@ -14,19 +14,24 @@ import Footer from './Footer';
 
 
 function App() {
-    const logged = useAppSelector(selectLogged);
+  const logged = useAppSelector(selectLogged);
   return (
-    <div className="App " style={{display: "flex"}}>
-      <Navbar activePage={''}></Navbar>
-      <div style={{width: "25%"}}>Left
-      <Login></Login><br></br>
-      <MyNavbar></MyNavbar> </div>
-      <div style={{width: "75%"}}>
+    <div>
+      <div style={{ height: "25%", width: "100%", padding: "1%", backgroundColor: "GrayText" }}>waiting for a component</div>
+      <div className="App " style={{ display: "flex" }}>
+        <div style={{ width: "25%" }}>Left
+          <Login></Login><br></br>
+          <MyNavbar></MyNavbar> </div>
+        <div style={{ width: "75%", backgroundColor: "pink" }}>
+          <Outlet></Outlet>
+          {logged ? <CRUD></CRUD> : <Register></Register>}
+        </div>
+        <br />
         
-        <Outlet></Outlet>
-        {logged ? <CRUD></CRUD>:<Register></Register>}</div>
-      <Footer></Footer>  
-       
+      </div>
+      <div style={{ height: "25%", padding: "1%", backgroundColor: "goldenrod" }}>
+          <Footer></Footer>
+        </div>
     </div>
   );
 }
